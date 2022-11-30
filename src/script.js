@@ -1,4 +1,3 @@
-//Feature 1
 let currentTime = document.querySelector("#day-time");
 let now = new Date();
 let days = [
@@ -16,7 +15,31 @@ let hour = now.getHours();
 let minutes = now.getMinutes();
 currentTime.innerHTML = `${day}, ${hour}:${minutes}`;
 
-// Feature 2
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+
+  let forecastHTML = `<div class= "row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+         <div class="day">${day}</div>
+             <i class="fa-solid fa-sun"></i>
+               <div class="weather-forecast-temperatures"> 
+                   <span class="weather-forecast-temperature-high">25°</span>
+                   <span class="weather-forecast-temperature-low">17°</span>
+                </div>
+      </div>
+      `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function searchCity(event) {
   event.preventDefault();
   let city = document.querySelector("#city");
@@ -26,7 +49,7 @@ function searchCity(event) {
 let form = document.querySelector("form");
 form.addEventListener("submit", searchCity);
 
-//Bonus feature
+displayForecast();
 
 function showCelcius(event) {
   event.preventDefault();

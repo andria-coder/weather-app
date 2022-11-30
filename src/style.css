@@ -30,13 +30,6 @@ h3 {
   padding-bottom: 0;
 }
 
-.celsius {
-  font-size: 40px;
-}
-.farenheight {
-  font-size: 40px;
-}
-
 a {
   text-decoration: none;
 }
@@ -61,6 +54,14 @@ ul {
 
 .low {
   font-size: 20px;
+}
+
+.low-temperature-value {
+  opacity: 0.6;
+}
+
+.weather-forecast-temperature-low {
+  opacity: 0.6;
 }
 
 i {
