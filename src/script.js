@@ -13,7 +13,7 @@ let day = days[now.getDay()];
 
 let hour = now.getHours();
 let minutes = now.getMinutes();
-if (minutes < 0) {
+if (minutes < 10) {
   minutes = `0${minutes}`;
 }
 currentTime.innerHTML = `${day}, ${hour}:${minutes}`;
@@ -24,7 +24,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class= "row">`;
-  forecast.forEach(function (day) {
+  forecast.forEach(function (day, index) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
@@ -45,8 +45,8 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  let apiKey = "701f06352d61835bc4fc894e7b084629";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiKey = "be81f193e065bf5feb2d944c7336968b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -59,6 +59,7 @@ function showWeatherCondition(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -77,4 +78,4 @@ function handleSubmit(event) {
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
 
-displayForecast(response);
+search("Cologne");
