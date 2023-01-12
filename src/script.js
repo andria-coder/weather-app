@@ -52,16 +52,15 @@ function getForecast(coordinates) {
 
 function showWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#current-high").innerHTML = Math.round(
-    response.data.main.temp_max
+  document.querySelector("#current-temperature").innerHTML = Math.round(
+    response.data.main.temp
   );
-  document.querySelector("#current-low").innerHTML = Math.round(
-    response.data.main.temp_min
-  );
+
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
+  console.log(response);
 
   getForecast(response.data.coord);
 }
