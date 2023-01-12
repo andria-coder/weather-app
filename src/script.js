@@ -18,6 +18,21 @@ if (minutes < 10) {
 }
 currentTime.innerHTML = `${day}, ${hour}:${minutes}`;
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
 function displayForecast(response) {
   let forecast = response.data.daily;
 
@@ -30,7 +45,7 @@ function displayForecast(response) {
         forecastHTML +
         `
       <div class="col-2">
-         <div class="day">${day}</div>
+         <div class="day">${formatDay(day.dt)}</div>
              <i class="fa-solid fa-sun"></i>
                <div class="weather-forecast-temperatures"> 
                    <span class="weather-forecast-temperature-high">25°</span>
@@ -55,12 +70,10 @@ function showWeatherCondition(response) {
   document.querySelector("#current-temperature").innerHTML = Math.round(
     response.data.main.temp
   );
-
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
-  console.log(response);
 
   getForecast(response.data.coord);
 }
